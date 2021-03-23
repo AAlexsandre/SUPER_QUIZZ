@@ -20,7 +20,7 @@ form{
     padding: 0.2em;
 }
 
-select,input{
+select,button{
     font-family: Impact;
     margin: 0em 1em 5em 0em;
     background-color:  #5780c1;

@@ -18,7 +18,7 @@ function createListe() {
         $("select").append("<option value=" + key + ">" + quizzes[key].title + "</option>");
     }
 
-    $("form").append("<input type=submit value=Commencer id=test2>");
+    $("form").append("<button type=submit>Commencer</button>");
 }
 
 $("document").ready(function () {
