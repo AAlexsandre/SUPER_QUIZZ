@@ -1,0 +1,38 @@
+body{
+    background-color: #34568b;
+    font-family: Impact;
+    font-size: 1.2em;
+}
+h1,h2{font-size: 2em;}
+
+header, footer{
+    background-color: #5780c1;
+    text-align: center;
+    border: solid whitesmoke;
+    margin: 1em 0.2em 1em 0.2em;
+    padding: 0.5em;
+}
+
+form{
+    border: solid whitesmoke;
+    text-align: center;
+    margin: 1em 0.2em 1em 0.2em;
+    padding: 0.2em;
+}
+
+select,input{
+    font-family: Impact;
+    margin: 0em 1em 5em 0em;
+    background-color:  #5780c1;
+    border: solid #5780c1;
+    color: whitesmoke;
+}
+
+/* Parti quiz.html */
+section{
+    text-align: center;
+    border: solid whitesmoke;
+    color: whitesmoke;
+    margin: 1em 0.2em 1em 0.2em;
+    padding: 0.5em;
+}
