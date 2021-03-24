@@ -18,6 +18,9 @@ function DisplayTheQuestionsInConsole() {
     }
 }
 
+/**
+ * This function 
+ */
 function DisplayTheQuiz() {
     $("section").append("<form action=resultats.html></form>")
 
@@ -25,7 +28,7 @@ function DisplayTheQuiz() {
         $("form").append("<img src=../images/"+parameters+"/img" + i + ".jpg></img>");
         $("form").append("<div>" + quizzes[parameters].data[i - 1].question + "</div");
 
-        for (let j = 0; j < 3; j++) {
+        for (let j = 0; j < quizzes[parameters].data[i-1].reponses.length; j++) {
             $("form").append("<input type=radio name=answer"+i+">" + quizzes[parameters].data[i - 1].reponses[j] );
         }
         $("form").append("<br>");
