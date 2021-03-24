@@ -12,13 +12,29 @@ function recupId() {
 /**
  * This function display all questions of quiz
  */
-function DisplayTheQuestions() {
-    for(let i = 0; i < quizzes[parameters].data.length; i++){
+function DisplayTheQuestionsInConsole() {
+    for (let i = 0; i < quizzes[parameters].data.length; i++) {
         console.log(quizzes[parameters].data[i].question);
     }
 }
 
+function DisplayTheQuiz() {
+    $("section").append("<form action=resultats.html></form>")
+
+    for (let i = 1; i < quizzes[parameters].data.length; i++) {
+        $("form").append("<img src=../images/"+parameters+"/img" + i + ".jpg></img>");
+        $("form").append("<div>" + quizzes[parameters].data[i - 1].question + "</div");
+
+        for (let j = 0; j < 3; j++) {
+            $("form").append("<input type=radio name=answer"+i+">" + quizzes[parameters].data[i - 1].reponses[j] );
+        }
+        $("form").append("<br>");
+    }
+    $("form").append("<button type=submit>Verification</button>");
+}
+
 $("document").ready(function () {
     recupId();
-    DisplayTheQuestions();
+    DisplayTheQuestionsInConsole();
+    setTimeout(DisplayTheQuiz, 4000);
 });
