@@ -1,3 +1,6 @@
+/**
+ * This function create and display the questions, the anwsers and show there are good or bad anwser
+ */
 function createAndDisplayTheAnswers() {
     let quiz = new URL(document.location.href).searchParams.get("choiceQuizz");
     let tabAnswer = [];
@@ -14,9 +17,18 @@ function createAndDisplayTheAnswers() {
 
     $("header").after("<section></section>");
     for (let index = 0; index < quizzes[quiz].data.length; index++) {
-        $("section").append("<p>" + quizzes[quiz].data[index].question + "</p>");
-        $("section").append("<p>" + quizzes[quiz].data[index].reponses[tabAnswer[index]] + "</p>");
+        $("section").append("<h2>" + quizzes[quiz].data[index].question + "</h2>");
+        $("section").append("<h3> Votre réponse : " + quizzes[quiz].data[index].reponses[tabAnswer[index]] + "</h3>");
+
+        if (tabAnswer[index] == quizzes[quiz].data[index].bonneReponses[0]) {
+            $("section").append("<p class=good> C'est la bonne réponse</p>");
+
+        } else {
+            $("section").append("<p class=bad>faux. La bonne réponse est : " + quizzes[quiz].data[index].reponses[quizzes[quiz].data[index].bonneReponses[0]] + "</p>");
+        }
     }
 }
 
-$("document").ready(createAndDisplayTheAnswers);
+$("document").ready(function () {
+    createAndDisplayTheAnswers();
+});

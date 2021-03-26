@@ -58,3 +58,29 @@ input{
     font-size: 2em;
     margin: 1em 0em 1em 0em;
 }
+.good{
+    background-color: green;
+    border: solid;
+}
+.bad{
+    background-color: red;
+    border: solid;
+}
+
+#test{
+    text-align: center;
+    border: solid whitesmoke;
+    margin: 1em 0.2em 1em 0.2em;
+    padding: 0.5em;
+}
+#treatment {
+    position: relative;
+    left: 25%;
+    width: 50%;
+    background-color: #ddd;
+    margin: 1em 0.2em 1em 0.2em;
+}
+  
+#loadBar {
+    background-color: green;
+}

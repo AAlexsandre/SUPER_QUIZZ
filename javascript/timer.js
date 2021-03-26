@@ -1,15 +1,20 @@
+let count = 3;
+let test;
 /**
  * This function display 3 2 1 and after remove the countdown
  */
 function countdown() {
-
-    $("section").append("<span>Le quiz commencera dans : </span>");
-    setTimeout(function () { $("section").append("<span>3 </span>") }, 1000);
-    setTimeout(function () { $("section").append("<span>2 </span>") }, 2000);
-    setTimeout(function () { $("section").append("<span>1 </span>") }, 3000);
-    setTimeout(function () { $("span").remove() }, 4000);
+    
+    $("section").append("<span class=cpt>" + count + " </span>");
+    
+    if(count == 0){
+        clearInterval(test);
+        $(".cpt").remove();
+    }
+    count--;
 };
 
 $("document").ready(function () {
-    countdown();
+    $("section").append("<span class=cpt>Le quiz commencera dans : </span>");
+    test = setInterval(countdown, 1000);
 });

@@ -49,6 +49,5 @@ function DisplayTheQuiz() {
 $("document").ready(function () {
     recupId();
     DisplayTheQuestionsInConsole();
-    setTimeout(DisplayTheQuiz, 4000);
-    console.log(parameters);
+    setTimeout(DisplayTheQuiz, 4050);
 });
