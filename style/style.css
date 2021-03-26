@@ -36,3 +36,25 @@ section{
     margin: 1em 0.2em 1em 0.2em;
     padding: 0.5em;
 }
+
+img{
+    border: solid;
+    width: 20em;
+    height: auto;
+    margin-top: 1.2em;
+}
+
+label{
+    border: solid white;
+    background-color: #5780c1;
+    margin: 2em 1em 2em 1em;
+}
+
+input{
+    margin: 2em 1em 2em 1em;
+}
+
+.check{
+    font-size: 2em;
+    margin: 1em 0em 1em 0em;
+}

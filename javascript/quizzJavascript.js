@@ -13,11 +13,10 @@ function browseTable() {
 function createListe() {
     $("header").after("<form action=quiz.html><h2>CHOIX DU QUIZZ<h2></form>");
     $("form").append("<select name=choiceQuizz></select>");
-    
+
     for (const key in quizzes) {
         $("select").append("<option value=" + key + ">" + quizzes[key].title + "</option>");
     }
-
     $("form").append("<button type=submit>Commencer</button>");
 }
 
