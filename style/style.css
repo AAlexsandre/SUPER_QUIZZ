@@ -67,20 +67,16 @@ input{
     border: solid;
 }
 
-#test{
-    text-align: center;
-    border: solid whitesmoke;
-    margin: 1em 0.2em 1em 0.2em;
-    padding: 0.5em;
+#loadBar{
+    background-color:  #5780c1;
+    width: 40em;
+    margin: auto;
+    border: solid white;
 }
-#treatment {
+
+#loading{
+    background: white;
+    height: 2em;
+    width: 2em;
     position: relative;
-    left: 25%;
-    width: 50%;
-    background-color: #ddd;
-    margin: 1em 0.2em 1em 0.2em;
-}
-  
-#loadBar {
-    background-color: green;
 }

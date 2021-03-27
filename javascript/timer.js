@@ -8,7 +8,7 @@ function countdown() {
     $("section").append("<span class=cpt>" + count + " </span>");
     
     if(count == 0){
-        clearInterval(test);
+        clearInterval(decompte);
         $(".cpt").remove();
     }
     count--;
@@ -16,5 +16,5 @@ function countdown() {
 
 $("document").ready(function () {
     $("section").append("<span class=cpt>Le quiz commencera dans : </span>");
-    test = setInterval(countdown, 1000);
+    decompte = setInterval(countdown, 1000);
 });
