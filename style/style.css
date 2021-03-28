@@ -70,7 +70,7 @@ input{
 #loadBar{
     background-color:  #5780c1;
     width: 40em;
-    margin: auto;
+    margin: auto auto 2em auto;
     border: solid white;
 }
 
