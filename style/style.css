@@ -28,6 +28,17 @@ select,button{
     color: whitesmoke;
 }
 
+a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+select:hover, button:hover, label:hover, a:hover{
+    background-color: whitesmoke;
+    border-color: whitesmoke;
+    color: black;
+}
+
 /* Parti quiz.html */
 section{
     text-align: center;
@@ -39,7 +50,7 @@ section{
 
 img{
     border: solid;
-    width: 20em;
+    width: 15em;
     height: auto;
     margin-top: 1.2em;
 }
@@ -54,7 +65,7 @@ input{
     margin: 2em 1em 2em 1em;
 }
 
-.check{
+.check, #returnAccueil{
     font-size: 2em;
     margin: 1em 0em 1em 0em;
 }
@@ -80,3 +91,4 @@ input{
     width: 2em;
     position: relative;
 }
+

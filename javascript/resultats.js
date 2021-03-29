@@ -18,34 +18,33 @@ function createAndDisplayTheAnswers() {
 
     $("header").after("<section id=displayAnswers></section>");
     for (let index = 0; index < quizzes[quiz].data.length; index++) {
+        let tailleArray = quizzes[quiz].data[index].bonneReponses.length;
+        $("#displayAnswers").append("<img src=../images/" + quizzes[quiz].data[index].image + ">");
         $("#displayAnswers").append("<h2>" + quizzes[quiz].data[index].question + "</h2>");
 
         if (quizzes[quiz].data[index].bonneReponses.length > 1) {
 
             for (let j = 0; j < tabAnswer[index].length; j++) {
-                i = 0;
                 for (let k = 0; k < quizzes[quiz].data[index].bonneReponses.length; k++) {
                     if (tabAnswer[index][j] == quizzes[quiz].data[index].bonneReponses[k]) {
                         $("#displayAnswers").append("<h3> Votre réponse : " + quizzes[quiz].data[index].reponses[tabAnswer[index][j]] + "</h3>");
                         $("#displayAnswers").append("<p class=good> C'est la bonne réponse</p>");
-                        i++;
+                        quizzes[quiz].data[index].bonneReponses.splice(k, 1);
                     }
                 }
-                if (i == 0) {
-                    $("#displayAnswers").append("<h3> Votre réponse : " + quizzes[quiz].data[index].reponses[tabAnswer[index][j]] + "</h3>");
-                    if (tabAnswer[index][j+1] == quizzes[quiz].data[index].bonneReponses[j]) {
-                        $("#displayAnswers").append("<p class=bad>faux. La bonne réponse est : " + quizzes[quiz].data[index].reponses[quizzes[quiz].data[index].bonneReponses[j+(quizzes[quiz].data[index].bonneReponses.length-1)]] + "</p>");
-                    }
-                    if (tabAnswer[index][j+1] == quizzes[quiz].data[index].bonneReponses[j+1]) {
-                        $("#displayAnswers").append("<p class=bad>faux. La bonne réponse est : " + quizzes[quiz].data[index].reponses[quizzes[quiz].data[index].bonneReponses[j]] + "</p>");
-                    }
+
+            }
+            if (quizzes[quiz].data[index].bonneReponses.length > 0) {
+                for (let q = 0; q < quizzes[quiz].data[index].bonneReponses.length; q++) {
+                    $("#displayAnswers").append("<h3> Votre réponse : " + quizzes[quiz].data[index].reponses[tabAnswer[index][q]] + "</h3>");
+                    $("#displayAnswers").append("<p class=bad>faux. La bonne réponse est : " + quizzes[quiz].data[index].reponses[quizzes[quiz].data[index].bonneReponses[q]] + "</p>");
                 }
             }
 
         } else {
-            $("#displayAnswers").append("<h3> Votre réponse : " + quizzes[quiz].data[index].reponses[tabAnswer[index]] + "</h3>");
 
-            if (tabAnswer[index] == quizzes[quiz].data[index].bonneReponses[0]) {
+            $("#displayAnswers").append("<h3> Votre réponse : " + quizzes[quiz].data[index].reponses[tabAnswer[index]] + "</h3>");
+            if (tabAnswer[index][0] == quizzes[quiz].data[index].bonneReponses[0]) {
                 $("#displayAnswers").append("<p class=good> C'est la bonne réponse</p>");
 
             } else {
@@ -54,6 +53,7 @@ function createAndDisplayTheAnswers() {
         }
 
     }
+    $("section").append("<button id=returnAccueil><a href=index.html>Button pour retourner à la page d'accueil</a></button>")
 }
 
 /**
