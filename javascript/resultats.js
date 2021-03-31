@@ -18,7 +18,6 @@ function createAndDisplayTheAnswers() {
 
     $("header").after("<section id=displayAnswers></section>");
     for (let index = 0; index < quizzes[quiz].data.length; index++) {
-        let tailleArray = quizzes[quiz].data[index].bonneReponses.length;
         $("#displayAnswers").append("<img src=../images/" + quizzes[quiz].data[index].image + ">");
         $("#displayAnswers").append("<h2>" + quizzes[quiz].data[index].question + "</h2>");
 

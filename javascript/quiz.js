@@ -24,15 +24,16 @@ function DisplayTheQuiz() {
     let difId = 0;
     let index = 0;
 
-    $("section").append("<form action=resultats.html></form>")
+    $("section").append('<form action=resultats.html onsubmit="return needToClick()"></form>')
 
     for (let i = 0; i < quizzes[parameters].data.length; i++) {
-        $("form").append("<img src=../images/" + quizzes[parameters].data[i].image + ">");
-        $("form").append("<div name=" + parameters + ">" + quizzes[parameters].data[i].question + "</div");
+        $("form").append("<div id=contenu" + i + "></div>");
+        $("#contenu" + i).append("<img class=test src=../images/" + quizzes[parameters].data[i].image + ">");
+        $("#contenu" + i).append("<div name=" + parameters + ">" + quizzes[parameters].data[i].question + "</div");
 
         if (quizzes[parameters].data[i].bonneReponses.length == 1) {
             for (let j = 0; j < quizzes[parameters].data[i].reponses.length; j++) {
-                $("form").append("<input type=radio id=answer" + difId + "   name=answer" + i + " value=" + index + ">");
+                $("#contenu" + i).append("<input type=radio class=answer id=answer" + difId + "   name=answer" + i + " value=" + index + ">");
                 $("input:last").after("<label for=answer" + difId + ">" + quizzes[parameters].data[i].reponses[j] + "</label>");
                 index++;
                 difId++;
@@ -41,7 +42,7 @@ function DisplayTheQuiz() {
 
         else {
             for (let j = 0; j < quizzes[parameters].data[i].reponses.length; j++) {
-                $("form").append("<input type=checkbox id=answer" + difId + "   name=answer" + i + " value=" + index + ">");
+                $("#contenu" + i).append("<input type=checkbox id=answer" + difId + "   name=answer" + i + " value=" + index + ">");
                 $("input:last").after("<label for=answer" + difId + ">" + quizzes[parameters].data[i].reponses[j] + "</label>");
                 index++;
                 difId++;
@@ -52,7 +53,31 @@ function DisplayTheQuiz() {
         index = 0;
     }
     $("form").append("<input name=choiceQuizz type=hidden value=" + parameters + ">");
-    $("form").append("<button class=check type=submit>Verification</button>");
+    $("form").append("<button class=check type=submit onclick=error()>Verification</button>");
+}
+
+function needToClick() {
+    let allRight = true;
+
+    for (let i = 0; i < quizzes[parameters].data.length; i++) {
+        let itChecked = $("#contenu" + i).find("input:checked");
+        let NumberOfAnswer = quizzes[parameters].data[i].bonneReponses;
+
+        if (NumberOfAnswer.length < itChecked.length) {
+            $("#contenu" + i).append("<div class=error>Il faudrait enlever " + (itChecked.length - NumberOfAnswer.length) + " reponse(s)</div>")
+            allRight = false;
+        }
+
+        if (NumberOfAnswer.length > itChecked.length) {
+            $("#contenu" + i).append("<div class=error>Il faudrait " + (NumberOfAnswer.length - itChecked.length) + " reponse(s)</div>")
+            allRight = false;
+        }
+    }
+    return allRight;
+}
+
+function error(){
+    $(".error").remove();
 }
 
 $("document").ready(function () {
