@@ -69,6 +69,8 @@ input{
     font-size: 2em;
     margin: 1em 0em 1em 0em;
 }
+
+/* resultats.html */
 .good{
     background-color: green;
     border: solid;
@@ -92,3 +94,8 @@ input{
     position: relative;
 }
 
+.error{
+    color: red;
+    border: solid;
+    font-size: 1.5em;
+}

@@ -1,13 +1,12 @@
 let count = 3;
-let test;
 /**
  * This function display 3 2 1 and after remove the countdown
  */
 function countdown() {
-    
+
     $("section").append("<span class=cpt>" + count + " </span>");
-    
-    if(count == 0){
+
+    if (count == 0) {
         clearInterval(decompte);
         $(".cpt").remove();
     }

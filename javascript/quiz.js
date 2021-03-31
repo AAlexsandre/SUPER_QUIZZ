@@ -31,31 +31,51 @@ function DisplayTheQuiz() {
         $("#contenu" + i).append("<img class=test src=../images/" + quizzes[parameters].data[i].image + ">");
         $("#contenu" + i).append("<div name=" + parameters + ">" + quizzes[parameters].data[i].question + "</div");
 
-        if (quizzes[parameters].data[i].bonneReponses.length == 1) {
-            for (let j = 0; j < quizzes[parameters].data[i].reponses.length; j++) {
-                $("#contenu" + i).append("<input type=radio class=answer id=answer" + difId + "   name=answer" + i + " value=" + index + ">");
-                $("input:last").after("<label for=answer" + difId + ">" + quizzes[parameters].data[i].reponses[j] + "</label>");
-                index++;
-                difId++;
-            }
-        }
+        if (quizzes[parameters].data[i].bonneReponses.length == 1) { createInputRadio(difId, index, i); }
 
-        else {
-            for (let j = 0; j < quizzes[parameters].data[i].reponses.length; j++) {
-                $("#contenu" + i).append("<input type=checkbox id=answer" + difId + "   name=answer" + i + " value=" + index + ">");
-                $("input:last").after("<label for=answer" + difId + ">" + quizzes[parameters].data[i].reponses[j] + "</label>");
-                index++;
-                difId++;
-            }
-        }
+        else { createInputCheckbox(difId, index, i); }
 
         $("form").append("<br>");
         index = 0;
+        difId = difId + quizzes[parameters].data[i].reponses.length;
     }
     $("form").append("<input name=choiceQuizz type=hidden value=" + parameters + ">");
-    $("form").append("<button class=check type=submit onclick=error()>Verification</button>");
+    $("form").append("<button class=check type=submit onclick=RemoveError()>Verification</button>");
 }
 
+/**
+ * This function creates the input type radio if there is only one correct answer
+ * @param {*} difId this parameter is an id for each input responses
+ * @param {*} index this parameter is an identifier for each input answer (identical for the answers of the same question)
+ * @param {*} i this parameter is to change a in data []
+ */
+function createInputRadio(difId, index, i) {
+    for (let j = 0; j < quizzes[parameters].data[i].reponses.length; j++) {
+        $("#contenu" + i).append("<input type=radio class=answer id=answer" + difId + "   name=answer" + i + " value=" + index + ">");
+        $("input:last").after("<label for=answer" + difId + ">" + quizzes[parameters].data[i].reponses[j] + "</label>");
+        index++;
+        difId++;
+    }
+}
+
+/**
+ * This function creates the input type checkbox if there are many possible responses
+ * @param {*} difId this parameter is an id for each input responses
+ * @param {*} index this parameter is an identifier for each input answer (identical for the answers of the same question)
+ * @param {*} i this parameter is to change a in data []
+ */
+function createInputCheckbox(difId, index, i) {
+    for (let j = 0; j < quizzes[parameters].data[i].reponses.length; j++) {
+        $("#contenu" + i).append("<input type=checkbox id=answer" + difId + "   name=answer" + i + " value=" + index + ">");
+        $("input:last").after("<label for=answer" + difId + ">" + quizzes[parameters].data[i].reponses[j] + "</label>");
+        index++;
+        difId++;
+    }
+}
+
+/**
+ * This function check if the anwsers was clicked
+ */
 function needToClick() {
     let allRight = true;
 
@@ -63,20 +83,18 @@ function needToClick() {
         let itChecked = $("#contenu" + i).find("input:checked");
         let NumberOfAnswer = quizzes[parameters].data[i].bonneReponses;
 
-        if (NumberOfAnswer.length < itChecked.length) {
-            $("#contenu" + i).append("<div class=error>Il faudrait enlever " + (itChecked.length - NumberOfAnswer.length) + " reponse(s)</div>")
-            allRight = false;
-        }
-
-        if (NumberOfAnswer.length > itChecked.length) {
-            $("#contenu" + i).append("<div class=error>Il faudrait " + (NumberOfAnswer.length - itChecked.length) + " reponse(s)</div>")
+        if (NumberOfAnswer.length < itChecked.length || NumberOfAnswer.length > itChecked.length) {
+            $("#contenu" + i).append("<div class=error>Il faudrait strictement " + (NumberOfAnswer.length) + " reponse(s)</div>")
             allRight = false;
         }
     }
     return allRight;
 }
 
-function error(){
+/**
+ * This function remove the div with error like class when the answers was clicked
+ */
+function RemoveError() {
     $(".error").remove();
 }
 
