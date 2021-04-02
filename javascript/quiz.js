@@ -3,9 +3,8 @@ let parameters = new URL(document.location.href).searchParams.get("choiceQuizz")
  * This function recup and display the Title and description of the quizzes
  */
 function recupId() {
-    $("header").after("<section><h1>Super Quizzzz</h1></section>");
-    $("section").append("<p>" + quizzes[parameters].title + "</p>");
-    $("section").append("<p>" + quizzes[parameters].description + "</p>");
+    $("section").append("<h1>" + quizzes[parameters].title + "</h1>");
+    $("section").append("<h2>" + quizzes[parameters].description + "</h2>");
 }
 
 /**
@@ -34,8 +33,6 @@ function DisplayTheQuiz() {
         if (quizzes[parameters].data[i].bonneReponses.length == 1) { createInputRadio(difId, index, i); }
 
         else { createInputCheckbox(difId, index, i); }
-
-        $("form").append("<br>");
         index = 0;
         difId = difId + quizzes[parameters].data[i].reponses.length;
     }
@@ -45,9 +42,9 @@ function DisplayTheQuiz() {
 
 /**
  * This function creates the input type radio if there is only one correct answer
- * @param {*} difId this parameter is an id for each input responses
- * @param {*} index this parameter is an identifier for each input answer (identical for the answers of the same question)
- * @param {*} i this parameter is to change a in data []
+ * @param {number} difId this parameter is an id for each input responses
+ * @param {number} index this parameter is the value for each input answer (identical for the answers of the same question) from 0 to n -1 
+ * @param {number} i this parameter is to change a in data [] and the names
  */
 function createInputRadio(difId, index, i) {
     for (let j = 0; j < quizzes[parameters].data[i].reponses.length; j++) {
@@ -60,9 +57,9 @@ function createInputRadio(difId, index, i) {
 
 /**
  * This function creates the input type checkbox if there are many possible responses
- * @param {*} difId this parameter is an id for each input responses
- * @param {*} index this parameter is an identifier for each input answer (identical for the answers of the same question)
- * @param {*} i this parameter is to change a in data []
+ * @param {number} difId this parameter is an id for each input responses
+ * @param {number} index this parameter is the value for each input answer (identical for the answers of the same question) from 0 to n -1 
+ * @param {number} i this parameter is to change a in data [] and the names
  */
 function createInputCheckbox(difId, index, i) {
     for (let j = 0; j < quizzes[parameters].data[i].reponses.length; j++) {
@@ -74,7 +71,7 @@ function createInputCheckbox(difId, index, i) {
 }
 
 /**
- * This function check if the anwsers was clicked
+ * This function checks if the number of responses corresponds to the expected number of responses
  */
 function needToClick() {
     let allRight = true;

@@ -1,4 +1,5 @@
 let count = 3;
+let decompte;
 /**
  * This function display 3 2 1 and after remove the countdown
  */

@@ -10,8 +10,7 @@ function browseTable() {
 /**
  * this function creates a form and dynamically adds the drop-down list 
  */
-function createListe() {
-    $("header").after("<form action=quiz.html><h2>CHOIX DU QUIZZ<h2></form>");
+function createList() {
     $("form").append("<select name=choiceQuizz></select>");
 
     for (const key in quizzes) {
@@ -22,5 +21,5 @@ function createListe() {
 
 $("document").ready(function () {
     browseTable();
-    createListe();
+    createList();
 });

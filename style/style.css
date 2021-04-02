@@ -13,11 +13,11 @@ header, footer{
     padding: 0.5em;
 }
 
-form{
+main{
     border: solid whitesmoke;
-    text-align: center;
     margin: 1em 0.2em 1em 0.2em;
     padding: 0.2em;
+    text-align: center;
 }
 
 select,button{

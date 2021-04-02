@@ -9,7 +9,6 @@ function createAndDisplayTheAnswers() {
 
     addValueInTab(quiz, tabAnswer, i);
 
-    $("header").after("<section id=displayAnswers></section>");
     for (let index = 0; index < quizzes[quiz].data.length; index++) {
         $("#displayAnswers").append("<img src=../images/" + quizzes[quiz].data[index].image + ">");
         $("#displayAnswers").append("<h2>" + quizzes[quiz].data[index].question + "</h2>");
@@ -19,14 +18,14 @@ function createAndDisplayTheAnswers() {
         else { checkTheAnswersFromRadio(quiz, tabAnswer, index); }
 
     }
-    $("section").append("<button id=returnAccueil><a href=index.html>Button pour retourner à la page d'accueil</a></button>")
+    $("#displayAnswers").append("<button id=returnAccueil><a href=index.html>Button pour retourner à la page d'accueil</a></button>")
 }
 
 /**
  * This function add in array the name and value of the form from the previous page 
- * @param {*} quiz this is the select quiz in the home page
- * @param {*} tabAnswer this is the array of value from form from the previous page
- * @param {*} i this parameter is to change a in data []
+ * @param {string} quiz this is the select quiz in the home page
+ * @param {Array number} tabAnswer this is the array of value from form from the previous page
+ * @param {number} i this parameter is to change a in data []
  */
 function addValueInTab(quiz, tabAnswer, i) {
     while (i < quizzes[quiz].data.length) {
@@ -37,14 +36,14 @@ function addValueInTab(quiz, tabAnswer, i) {
 
 /**
  * This function display the good or not answer from form with input checkbox
- * @param {*} quiz this is the select quiz in the home page
- * @param {*} tabAnswer this is the array of value from form from the previous page
- * @param {*} i this parameter is to change a in data []
+ * @param {string} quiz this variable contains the value of the quiz chosen by the user 
+ * @param {Array number} tabAnswer this is the array of value from form from the previous page
+ * @param {number} i this parameter is to change a in data []
  */
 function checkTheAnswersFromCheckbox(quiz, tabAnswer, index) {
     let startHeight = quizzes[quiz].data[index].bonneReponses.length;
-    while(startHeight > 0){
-        parcoursOfArrays(quiz, tabAnswer,index);
+    while (startHeight > 0) {
+        browseOfArrays(quiz, tabAnswer, index);
         startHeight--;
     }
 
@@ -58,11 +57,11 @@ function checkTheAnswersFromCheckbox(quiz, tabAnswer, index) {
 
 /**
  * This function checks if the two tables have a match
- * @param {*} quiz this is the select quiz in the home page
- * @param {*} tabAnswer this is the array of value from form from the previous page
- * @param {*} i this parameter is to change a in data []
+ * @param {string} quiz this variable contains the value of the quiz chosen by the user 
+ * @param {Array number} tabAnswer this is the array of value from form from the previous page
+ * @param {number} i this parameter is to change a in data []
  */
-function parcoursOfArrays(quiz,tabAnswer,index ){
+function browseOfArrays(quiz, tabAnswer, index) {
     for (let j = 0; j < tabAnswer[index].length; j++) {
         for (let k = 0; k < quizzes[quiz].data[index].bonneReponses.length; k++) {
             if (tabAnswer[index][j] == quizzes[quiz].data[index].bonneReponses[k]) {
@@ -77,9 +76,9 @@ function parcoursOfArrays(quiz,tabAnswer,index ){
 
 /**
  *  * This function display the good or not answer from form with input radio
- * @param {*} quiz this is the select quiz in the home page
- * @param {*} tabAnswer this is the array of value from form from the previous page
- * @param {*} i this parameter is to change a in data []
+ * @param {string} quiz this variable contains the value of the quiz chosen by the user 
+ * @param {Array number} tabAnswer this is the array of value from form from the previous page
+ * @param {number} i this parameter is to change a in data []
  */
 function checkTheAnswersFromRadio(quiz, tabAnswer, index) {
     $("#displayAnswers").append("<h3> Votre réponse : " + quizzes[quiz].data[index].reponses[tabAnswer[index]] + "</h3>");
@@ -97,7 +96,7 @@ function checkTheAnswersFromRadio(quiz, tabAnswer, index) {
  * This function is personnal it creates and display a load barre before the result
  */
 function loadingQuiz() {
-    $("header").after("<section id=placeForLoadBar><h1>TRAITEMENT EN COURS</h1></section>");
+    $("#displayAnswers").append("<div id=placeForLoadBar><h1>TRAITEMENT EN COURS</h1></div>");
 
     $("#placeForLoadBar").append("<div id=loadBar></div>");
     $("#loadBar").append("<div id=loading ></div>");
